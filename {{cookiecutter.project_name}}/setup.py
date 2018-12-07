@@ -15,6 +15,7 @@ setup(
         'flask-jwt-extended',
         'flask-marshmallow',
         'marshmallow-sqlalchemy',
+        'psycopg2-binary',
         'python-dotenv',
         'passlib'
     ],
