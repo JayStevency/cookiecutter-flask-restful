@@ -2,13 +2,17 @@
 
 Use env var to override
 """
-DEBUG = True
-SECRET_KEY = "changeme"
+import os
+from dotenv import load_dotenv
 
-SQLALCHEMY_DATABASE_URI = "sqlite:////tmp/{{cookiecutter.app_name}}.db"
+load_dotenv()
+
+DEBUG = True
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+JSON_AS_ASCII = False
 
 JWT_BLACKLIST_ENABLED = True
-JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']{% if cookiecutter.use_celery == "yes" %}
-CELERY_BROKER_URL = "amqp://guest:guest@localhost/"
-CELERY_RESULT_BACKEND = "amqp://guest:guest@localhost/"{% endif %}
+JWT_BLACKLIST_TOKEN_CHECKS = ['access', 'refresh']
